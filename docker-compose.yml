@@ -1,15 +1,5 @@
 version: "3.8"
 services:
-  web-dev:
-    build:
-      context: .
-      dockerfile: dev.Dockerfile
-    container_name: stunning-memory-wip
-    ports:
-      - 3000:3000
-    volumes:
-      - ./:/app
-
   web:
     build:
       context: .

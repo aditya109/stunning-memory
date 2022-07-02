@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: daitya96/stunning-memory-reactjs:latest
+  repository: daitya96/stunning-memory-python:latest
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "1.0"

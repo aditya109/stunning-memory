@@ -1,6 +1,4 @@
-# stunning-memory - Golang version
-
-![](https://go.dev/images/go-logo-white.svg)
+# stunning-memory - Golang version <image src="https://go.dev/images/gophers/motorcycle.svg" height=40 width=40/>
 
 ## Getting started
 

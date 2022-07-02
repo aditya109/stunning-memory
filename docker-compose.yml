@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: daitya96/stunning-memory-java:latest
+    container_name: stunning-memory
+    ports:
+      - 3000:3000

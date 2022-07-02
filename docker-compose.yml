@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: daitya96/stunning-memory-nodejs:latest
+    image: daitya96/stunning-memory-reactjs:latest
     container_name: stunning-memory
     ports:
       - 3000:3000

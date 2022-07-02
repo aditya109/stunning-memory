@@ -20,10 +20,10 @@ For example, if I select `ReactJS`, I will type:
 git checkout reactjs
 ```
 
-Now, delete the following files:
+Now, delete the following:
 
-1. docker-compose.yml
-2. Dockerfile
+1. docker-compose files
+2. Dockerfiles
 3. `kubernetes` directory
 
 Once, you are done now, here are your tasks:

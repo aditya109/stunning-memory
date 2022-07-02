@@ -26,7 +26,7 @@ Now, delete the following files:
 2. Dockerfile
 3. `kubernetes` directory
 
-Once, you are done now, here are your three tasks:
+Once, you are done now, here are your tasks:
 
 - [ ] Dockerize your application.
   - [ ] Write Dockerfile for your application

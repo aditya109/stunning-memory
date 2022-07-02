@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 )
@@ -22,8 +23,12 @@ func main() {
 	})
 
 	r.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
-		log.Print("/status was hit successfully !")
-		fmt.Fprintf(w, "The server is running ! 🏃‍♂️⏩")
+		log.Printf("/ping was hit successfully !")
+		name, err := os.Hostname()
+		if err != nil {
+			panic(err)
+		}
+		fmt.Fprintf(w, "Hi there ! 👋 My host-id is %s 🕸️", name)
 	})
 
 	log.Print("server running successfully at http://localhost:3000 !")

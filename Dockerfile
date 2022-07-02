@@ -1,8 +1,7 @@
-FROM python
+FROM ruby
 WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-COPY main.py ./
+COPY Gemfile Gemfile.lock ./
+RUN bundle install
+COPY app.rb config.ru ./
 EXPOSE 3000
-ENTRYPOINT [ "python" ]
-CMD [ "main.py" ]
+CMD ["bundle", "exec", "rackup", "--host", "0.0.0.0", "-p", "3000"]

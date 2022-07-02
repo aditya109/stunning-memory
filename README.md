@@ -1,7 +1,4 @@
-# stunning-memory - Java version
-
-![](https://go.dev/images/go-logo-white.svg)
-
+# stunning-memory - Java version <image src="https://cdn.svgporn.com/logos/java.svg" height=30 width=30 />
 ## Getting started
 
 You need Docker, Kubernetes, Helm installed prior to starting the tasks.

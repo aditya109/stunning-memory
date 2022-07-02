@@ -1,6 +1,4 @@
-# stunning-memory - Java version
-
-![](https://go.dev/images/go-logo-white.svg)
+# stunning-memory - NodeJS version <image src="https://cdn.svgporn.com/logos/nodejs-icon.svg" height=30 width=30 />
 
 ## Getting started
 

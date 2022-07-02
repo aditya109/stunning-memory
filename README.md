@@ -1,4 +1,4 @@
-# stunning-memory - NodeJS version <image src="https://cdn.svgporn.com/logos/nodejs-icon.svg" height=30 width=30 />
+# stunning-memory - NodeJS version <image src="https://cdn.svgporn.com/logos/create-react-app.svg" height=30 width=30 />
 
 ## Getting started
 

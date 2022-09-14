@@ -1,0 +1,67 @@
+---
+# Source: stunning-memory/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stunning-memory-deployment
+  labels:
+    helm.sh/chart: stunning-memory-0.1.0
+    app.kubernetes.io/name: stunning-memory
+    app.kubernetes.io/instance: sm-chart
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  strategy:
+        rollingUpdate:
+          maxSurge: 50%
+          maxUnavailable: 25%
+        type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: stunning-memory
+      app.kubernetes.io/instance: sm-chart
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: stunning-memory
+        app.kubernetes.io/instance: sm-chart
+    spec:
+      serviceAccountName: stunning-memory
+      securityContext:
+        {}
+      containers:
+        - name: stunning-memory
+          securityContext:
+            {}
+          image: "daitya96/stunning-memory-golang:2.0"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /status
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /welcome
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          startupProbe:
+            httpGet:
+              path: /welcome
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          resources:
+            limits:
+              cpu: 500m
+              memory: 128Mi
+            requests:
+              cpu: 250m
+              memory: 64Mi

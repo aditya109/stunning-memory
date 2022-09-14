@@ -1,0 +1,18 @@
+while read -r file; do
+	if [[ ${file: -5} == ".json" ]]; then
+		sops -e -i --encrypted-regex '(user|pass|conn_string|connection_string|key|hash|token|secret|account_sid|account_token)' --input-type json --output-type json $1/$file
+
+	elif [[ ${file: -4} == ".yml" || ${file: -5} == ".yaml" ]]; then
+		sops -e -i --encrypted-regex '(user|pass|conn_string|connection_string|key|^port|client_secret|ConnString)' --input-type yaml --output-type yaml $1/$file
+	fi;
+
+
+	if [ $? -eq 0 ]; then
+		echo encrypting $file
+	elif [ $? -eq 203 ]; then
+		echo $file is already encrypted using sops
+	else
+		echo $?
+		echo Failed to encrypt $file. Check your sts token or pgp key import
+	fi;
+done < $1/.crypt

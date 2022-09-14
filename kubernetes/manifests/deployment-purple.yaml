@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sm
+    version: purple
+  name: sm-purple
+  namespace: testing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sm
+      version: purple
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: sm
+        version: purple
+    spec:
+      containers:
+      - image: daitya96/stunning-memory-golang:2.1
+        name: stunning-memory-golang
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 3000
+        resources:         # once here
+          requests:
+            cpu: 250m
+            memory: 100Mi
+          limits:
+            cpu: 500m
+            memory: 100Mi
+status: {}

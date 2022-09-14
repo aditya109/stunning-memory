@@ -1,0 +1,31 @@
+kind: VirtualService
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name:  sm-virtualservice
+  namespace: testing
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - "ingress-gateway-configuration"
+  http:
+    - name: api-routing-v1
+      match:
+      - uri:
+          regex: '.*v1.*'
+      route:
+        - destination:
+            host: sm-svc.testing.svc.cluster.local # The Target DNS name
+            subset: blue-group  # The name defined in the DestinationRule
+          weight: 100
+    - name: api-routing-v2
+      match:
+      - uri:
+          regex: '.*v2.*'
+      route:
+        - destination:
+            host: sm-svc.testing.svc.cluster.local # The Target DNS name
+            subset: green-group  # The name defined in the DestinationRule
+
+
+

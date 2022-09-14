@@ -1,0 +1,21 @@
+---
+# Source: stunning-memory/templates/tests/test-connection.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "stunning-memory-test-connection"
+  labels:
+    helm.sh/chart: stunning-memory-0.1.0
+    app.kubernetes.io/name: stunning-memory
+    app.kubernetes.io/instance: sm-chart
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['stunning-memory:3000']
+  restartPolicy: Never

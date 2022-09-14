@@ -28,10 +28,10 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		fmt.Fprintf(w, "Hi there ! 👋 My host-id is %s 🕸️", name)
+		fmt.Fprintf(w, "Hi there ! ⌚ Version 2.0: 👋 My host-id is %s 🕸️", name)
 	})
 
-	log.Print("server running successfully at http://localhost:3000 !")
+	log.Print("⌚ Version 2.0: server running successfully at http://localhost:3000 !")
 	if err := http.ListenAndServe(":3000", r); err != nil {
 		log.Fatalf("server starting failed: %v", err)
 	}

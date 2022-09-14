@@ -1,0 +1,62 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: deployment-restart-serviceaccount
+  namespace: testing
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: deployment-restart-role
+  namespace: testing
+rules:
+  - apiGroups: ["apps", "extensions"] # "" indicates the core API group
+    resources: ["deployments"]
+    verbs: ["*"]
+    resourceNames:
+    - sm-blue
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: deployment-restart-rolebinding
+  namespace: testing
+subjects:
+- kind: ServiceAccount
+  name: deployment-restart-serviceaccount # Name is case sensitive
+  namespace: testing
+roleRef:
+  kind: Role
+  name: deployment-restart-role
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: deployment-restart-cronjob
+  namespace: testing
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      activeDeadlineSeconds: 300
+      template:
+        spec:
+          serviceAccountName: deployment-restart-serviceaccount
+          containers:
+          - name: kubectl
+            image: bitnami/kubectl
+            imagePullPolicy: IfNotPresent
+            command:
+              - bash
+              - -c
+              - >-
+                kubectl annotate deployment/sm-blue kubernetes.io/change-cause='restart pods for deployment sm-blue' &&
+                kubectl rollout restart deployment/sm-blue
+
+          restartPolicy: OnFailure
+---
+
+

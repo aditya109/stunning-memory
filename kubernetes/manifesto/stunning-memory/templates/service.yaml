@@ -1,0 +1,22 @@
+---
+# Source: stunning-memory/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: stunning-memory-svc-clusterip
+  labels:
+    helm.sh/chart: stunning-memory-0.1.0
+    app.kubernetes.io/name: stunning-memory
+    app.kubernetes.io/instance: sm-chart
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3000
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: stunning-memory
+    app.kubernetes.io/instance: sm-chart

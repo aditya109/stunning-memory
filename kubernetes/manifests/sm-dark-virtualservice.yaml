@@ -1,0 +1,11 @@
+kind: VirtualService
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name:  sm-dark-virtualservice
+  namespace: testing
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - "ingress-gateway-configuration"
+  http:

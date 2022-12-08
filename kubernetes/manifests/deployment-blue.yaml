@@ -8,6 +8,7 @@ metadata:
   namespace: testing
 spec:
   revisionHistoryLimit: 2
+  replicas: 10
   strategy:
     rollingUpdate:
       maxUnavailable: 0

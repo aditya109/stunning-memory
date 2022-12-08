@@ -8,4 +8,4 @@ spec:
     - "*"
   gateways:
     - "ingress-gateway-configuration"
-  http:
+

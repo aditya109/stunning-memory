@@ -2923,7 +2923,7 @@ metadata:
     install.operator.istio.io/owning-resource: unknown
     operator.istio.io/component: "EgressGateways"
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: istio-egressgateway
     istio: egressgateway
@@ -2977,7 +2977,7 @@ spec:
   selector:
     app: istio-ingressgateway
     istio: ingressgateway
-  type: LoadBalancer
+  type: NodePort
 ---
 apiVersion: v1
 kind: Service
@@ -3389,7 +3389,7 @@ spec:
     app: prometheus
     release: prometheus
   sessionAffinity: None
-  type: "ClusterIP"
+  type: "NodePort"
 ---
 # Source: prometheus/templates/server/deploy.yaml
 apiVersion: apps/v1
@@ -4693,7 +4693,7 @@ metadata:
   labels:
     app: jaeger
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
   - name: jaeger-collector-http
     port: 14268
